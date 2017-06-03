@@ -88,8 +88,14 @@ export default class Map{
   }
 
   setOriginLocation() {
+    var initialLocation = new google.maps.LatLng(24.7955112, 120.9951204);
+    this.googleMap.setOptions({
+      zoom: 19
+    });
+    this.googleMap.setCenter(initialLocation);
+    /*
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
         var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.googleMap.setOptions({
           zoom: 18
@@ -98,6 +104,7 @@ export default class Map{
         this.person.setPosition(initialLocation);
       }.bind(this));
     }
+    */
   }
 
 }

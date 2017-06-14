@@ -7,8 +7,8 @@ export default class Map{
   constructor(){
     this.target = -1;
     this.mapOptions = {
-      center: { lat: 24.792081, lng: 120.992631},
-      zoom: 18,
+      center: { lat: 24.7957, lng: 120.995152},
+      zoom: 20,
       disableDefaultUI: true
     };
     this.rubikes = [];
@@ -90,9 +90,10 @@ export default class Map{
   setOriginLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        //var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var initialLocation = new google.maps.LatLng(24.7957, 120.995152);
         this.googleMap.setOptions({
-          zoom: 18
+          zoom: 20
         });
         this.googleMap.setCenter(initialLocation);
         this.person.setPosition(initialLocation);

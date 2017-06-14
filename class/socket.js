@@ -36,7 +36,7 @@ class SocketIO
 								}
 
 								that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
-									console.log(statechange);
+									console.log("statechange");
 								});
 
 								ourbikes[i] = obj;

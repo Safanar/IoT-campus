@@ -29,6 +29,8 @@ class SocketIO
 								//obj.kid = null;
 								d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
+								console.log(data);
+								console.log(obj);
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));

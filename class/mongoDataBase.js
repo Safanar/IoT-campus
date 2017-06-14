@@ -9,7 +9,7 @@ class Mongo
 		MongoClient.connect(url, function (err, db) {
 			if (err) {
 				console.log('Unable to connect to the mongoDB server. Error:', err);
-			} 
+			}
 			else {
 				console.log('Connection established to', url);
 				temp.MongoDatabase = db;
@@ -17,12 +17,12 @@ class Mongo
 		});
 	}
 
-	getAccount(json,callback) 
+	getAccount(json,callback)
 	{
 		this.MongoDatabase.collection('account').find(json).toArray(callback);
 	}
 
-	updateAccountPassword(id, newpassword, callback) 
+	updateAccountPassword(id, newpassword, callback)
 	{
 		this.MongoDatabase.collection('account').updateOne(
 			{ id 	: id },
@@ -30,7 +30,7 @@ class Mongo
 		,callback);
 	}
 
-	updateAccountEmail(id, newemail, callback) 
+	updateAccountEmail(id, newemail, callback)
 	{
 		this.MongoDatabase.collection('account').updateOne(
 			{ id 	: id },
@@ -38,7 +38,7 @@ class Mongo
 		,callback);
 	}
 
-	register(id,password,email,uid,callback) 
+	register(id,password,email,uid,callback)
 	{
 		this.MongoDatabase.collection('account').insertOne(
 	    {
@@ -54,47 +54,49 @@ class Mongo
 	    ,callback);
 	}
 
-	getBikes(callback) 
+	getBikes(callback)
 	{
 		this.MongoDatabase.collection('Parking').find({}).toArray(callback);
 		//console.log(this.MongoDatabase.collection('bike').find({}).toArray(callback));
 	}
 
-	getOneBike(json, callback) 
+	getOneBike(json, callback)
 	{
 		this.MongoDatabase.collection('bike').find(json).toArray(callback);
 	}
 
-	setBike(id,state,battery,kid,callback) 
+	setBike(id,state,battery,kid,callback)
 	{
 		this.MongoDatabase.collection('Parking').insertOne(
 		{
-			
-			id 		: id,
+
+			_id 		: id,
 			state 	: state,
 			battery : battery,
 			location: {
-				latitude  : -1,
-				longitude : -1
+				latitude  : latitude,
+				longitude : longitude
 			},
-			kid		: kid,
-			time: new Date()
+			//kid		: kid,
+			time: time
 
 		}
 		,callback);
 	}
 
-	updateBike(id, lat, long, state, battery, callback) 
+	updateBike(id, lasttime, callback)
 	{
-		this.MongoDatabase.collection('bike').updateOne(
-			{ id : id },
-			{ $set : { location : { latitude : lat, longitude : long },
-					   state    : state,
-					   battery  : battery } },
-			callback);
+		this.MongoDatabase.collection('Parking').updateOne(
+			{
+
+				_id 		: id,
+				lasttime: lasttime
+
+			}
+			,callback);
 	}
 
-	insertContact(data,callback) 
+	insertContact(data,callback)
 	{
 		this.MongoDatabase.collection('contact').insertOne(
 	    {
@@ -104,12 +106,12 @@ class Mongo
 	    ,callback);
 	}
 
-	getContact(callback) 
+	getContact(callback)
 	{
 		this.MongoDatabase.collection('contact').find({}).toArray(callback);
 	}
 
-	insertPlace(data,callback) 
+	insertPlace(data,callback)
 	{
 		this.MongoDatabase.collection('place').insertOne(
 	    {
@@ -119,7 +121,7 @@ class Mongo
 	    ,callback);
 	}
 
-	getPlace(callback) 
+	getPlace(callback)
 	{
 		this.MongoDatabase.collection('place').find({}).toArray(callback);
 	}
@@ -134,7 +136,7 @@ class Mongo
 	    ,callback);
 	}
 
-	getIOTData(callback) 
+	getIOTData(callback)
 	{
 		this.MongoDatabase.collection('iot').find({}).toArray(callback);
 	}

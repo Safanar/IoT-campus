@@ -4,6 +4,8 @@ class SocketIO
 	constructor(httpServer,mongodb)
 	{
 		var that = this;
+		var ourbikes = [];
+		var bool = false;
 		this.mongoDataBase = mongodb;
 		this.io = require('socket.io').listen(httpServer);
 		this.io.sockets.on('connection',function(socket){
@@ -18,7 +20,6 @@ class SocketIO
 						}
 						else{
 							//socket.emit('bikes',func.result(data,1));
-							var ourbikes = [];
 							for(var i=0;i<data.length;i++){
 								var obj = new Object;
 								obj.id = data[i]._id;
@@ -29,11 +30,19 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
-								console.log(data);
-								console.log(obj);
+
+							  if(bool && ourbikes[i] != obj.state){
+									obj.lasttime = new Date();
+								}
+
+								that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+									console.log(statechange);
+								}
+
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));
+							bool = true;
 						}
 					});
 				}

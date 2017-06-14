@@ -28,10 +28,10 @@ class SocketIO
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();
-								obj.time = new Date(new Date(data[i].time) - (-480 * 60000));
+								obj.time = new Date(new Date(data[i].time));
 								obj.lasttime = new Date(data[i].lasttime);
 							  if(bool == true && ourbikes[i].state != obj.state){
-									obj.lasttime =  d.getTime() - (-480 * 60000);
+									obj.lasttime =  d.getTime();
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									});
 								}

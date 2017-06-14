@@ -7,9 +7,19 @@ export default class Bike{
     this.icon = {
       //url: 'http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/magic-marker-icons-transport-travel/116392-magic-marker-icon-transport-travel-transportation-bicycle.png', // url
       url : 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/256/Trafficlight-green-icon.png',
-      scaledSize: new google.maps.Size(20, 20), // scaled size
+      scaledSize: new google.maps.Size(10, 10), // scaled size
     };
-    if(bike.state == 1)this.icon.url = 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/256/Trafficlight-red-icon.png';
+    if(bike.state == 1){
+      this.icon.url = 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/256/Trafficlight-red-icon.png';
+      var d = new Date();
+      if(bike.lasttime != null){
+        var n = d.getTime();
+        var diff = (n - bike.lasttime)/(1000*60);
+        console.log(diff);
+        if(diff >= 30)this.icon.url = 'http://www.fleetcrew.com/images/light-yellow-flash.gif';
+      }
+    }
+
     this.marker = new google.maps.Marker({
       map: map.googleMap,
       position: {lat: parseFloat(bike.location.latitude), lng: parseFloat(bike.location.longitude)},

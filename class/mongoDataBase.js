@@ -87,12 +87,12 @@ class Mongo
 	updateBike(id, lasttime, callback)
 	{
 		this.MongoDatabase.collection('Parking').updateOne(
-			{
-
-				_id 		: id,
-				lasttime: lasttime
-
-			}
+			{ "_id" 		: id},
+			{ $set:
+         {
+           "lasttime": lasttime
+         }
+      }
 			,callback);
 	}
 

@@ -23,9 +23,8 @@ class SocketIO
 							for(var i=0;i<data.length;i++){
 								var obj = new Object;
 								obj.id = data[i]._id;
-								if(data[i].data.charAt(8) == 0)obj.state = 0;
-								else obj.state = 1;
-								obj.battery = data[i].data.charAt(4);
+								obj.state = data[i].data.charAt(9)%2;
+								obj.battery = data[i].data.charAt(8)%2;
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();

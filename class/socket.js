@@ -30,7 +30,7 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
-								obj.lasttime = new Date(new Date(data[i].lasttime) - (d.getTimezoneOffset() * 60000));
+								obj.lasttime = new Date(data[i].lasttime);
 							  if(bool == true && ourbikes[i].state != obj.state){
 									obj.lasttime =  d.getTime() - (d.getTimezoneOffset() * 60000);
 								}

@@ -5,7 +5,6 @@ class SocketIO
 	{
 		var that = this;
 		var ourbikes = [];
-		var bool = false;
 		this.mongoDataBase = mongodb;
 		this.io = require('socket.io').listen(httpServer);
 		this.io.sockets.on('connection',function(socket){
@@ -31,7 +30,8 @@ class SocketIO
 								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
 
-							  if(bool && ourbikes[i] != obj.state){
+                obj.lasttime = "None";
+							  if(ourbikes[i] != obj.state){
 									obj.lasttime = new Date();
 								}
 
@@ -39,10 +39,10 @@ class SocketIO
 									console.log("statechange");
 								});
 
+
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));
-							bool = true;
 						}
 					});
 				}

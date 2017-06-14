@@ -28,7 +28,7 @@ class SocketIO
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();
-								obj.time = data[i].time);
+								obj.time = data[i].time;
 								obj.lasttime = data[i].lasttime;
 							  if(bool == true && ourbikes[i].state != obj.state){
 									obj.lasttime =  d.getTime();

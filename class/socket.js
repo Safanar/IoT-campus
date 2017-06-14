@@ -31,15 +31,13 @@ class SocketIO
 								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
 
-								if(data[i].lastime == null)obj.lasttime = "None";
-								else obj.lasttime = data[i].lastime;
+                obj.lasttime = new Date(data[i].lasttime);
 							  if(bool == true && ourbikes[i].state != obj.state){
 									obj.lasttime = new Date();
+									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+										console.log("statechange");
+									});
 								}
-
-								that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
-									console.log("statechange");
-								});
 
 
 								ourbikes[i] = obj;

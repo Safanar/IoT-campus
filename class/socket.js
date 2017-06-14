@@ -30,7 +30,7 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
-
+/*
 							  if(bool && ourbikes[i] != obj.state){
 									obj.lasttime = new Date();
 								}
@@ -38,7 +38,7 @@ class SocketIO
 								that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									console.log(statechange);
 								}
-
+*/
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));

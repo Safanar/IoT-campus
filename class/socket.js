@@ -27,7 +27,7 @@ class SocketIO
 								obj.battery = data[i].data.charAt(4);
 								obj.location = data[i].location;
 								//obj.kid = null;
-								d = new Date();
+								var d = new Date();
 								obj.time = new Date(new Date(data[i].time) - (d.getTimezoneOffset() * 60000));
 								console.log(data);
 								console.log(obj);

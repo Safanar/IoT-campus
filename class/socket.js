@@ -27,13 +27,13 @@ class SocketIO
 								obj.battery = data[i].data.charAt(8)%2;
 								obj.location = data[i].location;
 								//obj.kid = null;
+								var d = new Date();
 								obj.time = data[i].time;
 								obj.lasttime = new Date(0).getTime();
-								if(bool == true && ourbikes[i].state != obj.state){
-									obj.battery = 1;
-									obj.lasttime = new Date().getTime();
-									/*that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
-									});*/
+								if(bool == true){
+									obj.lasttime = d.getTime();
+									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+									});
 								}
 								ourbikes[i] = obj;
 							};

@@ -30,13 +30,16 @@ class SocketIO
 								var d = new Date();
 								obj.time = data[i].time;
 								obj.lasttime = new Date(0).getTime();
-								var temp =  ourbikes[i].state;
-							  if(bool == true && obj.state != temp){
+								if(bool == true){
 									obj.battery = 1;
-									obj.lasttime =  new Date().getTime();
-									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
-									});
+									var temp =  ourbikes[i].state;
+									if(obj.state != temp){
+										obj.lasttime =  new Date().getTime();
+										that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+										});
+									}
 								}
+
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));

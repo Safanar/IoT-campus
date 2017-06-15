@@ -28,11 +28,11 @@ class SocketIO
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();
-								obj.time = data[i].time;
+								obj.time = 0
 								obj.lasttime = data[i].lasttime;
 							  if(bool == true && ourbikes[i].state != obj.state){
 									obj.battery = 1;
-									obj.lasttime =  d.getTime();
+									obj.lasttime =  10;
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									});
 								}

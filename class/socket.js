@@ -30,7 +30,7 @@ class SocketIO
 								obj.time = data[i].time;
 								
 								if(bool == true){
-									if(data[i].lasttime != null)obj.lasttime =  data[i].lasttime;
+									if(data[i].lasttime != null || data[i].lasttime <= 100)obj.lasttime =  data[i].lasttime;
 									else obj.lasttime =  ourbikes[i].lasttime;
 									if(obj.state != ourbikes[i].state){
 										var d = new Date();

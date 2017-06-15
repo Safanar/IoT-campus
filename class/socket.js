@@ -34,7 +34,7 @@ class SocketIO
 									console.log(obj.lasttime);
 									//that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									//});
-								}else obj.lasttime = null;
+								}
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));

@@ -28,9 +28,9 @@ class SocketIO
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();
-								obj.time = 0
-								obj.lasttime = data[i].lasttime;
-							  if(bool == true){
+								obj.time = data[i].time;
+								obj.lasttime = new Date(0).getTime();
+							  if(bool == true && ourbikes[i].state != obj.state){
 									obj.battery = 1;
 									obj.lasttime =  10;
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {

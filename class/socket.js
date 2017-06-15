@@ -32,7 +32,7 @@ class SocketIO
 								obj.lasttime = new Date(0).getTime();
 							  if(bool == true){
 									obj.battery = 1;
-									obj.lasttime =  10;
+									obj.lasttime =  new Date().getTime();
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									});
 								}

@@ -38,7 +38,7 @@ class SocketIO
 									var d = new Date();
 									obj.lasttime =  d.getTime();
 								}
-								if(obj.lasttime != null && obj[i].lasttime > 100)that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+								if(obj.lasttime != null && obj.lasttime > 100)that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 								});
 								ourbikes[i] = obj;
 							};

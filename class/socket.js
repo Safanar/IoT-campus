@@ -29,7 +29,7 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = data[i].time;
-								obj.lasttime = null;
+								obj.lasttime = new Date(0).getTime();
 								var temp =  ourbikes[i].state;
 							  if(bool == true && obj.state != temp){
 									obj.battery = 1;

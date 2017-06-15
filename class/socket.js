@@ -24,20 +24,23 @@ class SocketIO
 								var obj = new Object;
 								obj.id = data[i]._id;
 								obj.state = data[i].data.charAt(9)%2;
-								obj.battery = data[i].data.charAt(8)%2;
+								//obj.battery = data[i].data.charAt(8)%2;
 								obj.location = data[i].location;
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = data[i].time;
 								obj.lasttime = new Date(0).getTime();
 								if(bool == true){
-									obj.battery = ourbikes[i].state*10 + obj.state;
+									//obj.battery = ourbikes[i].state*10 + obj.state;
 									var temp =  ourbikes[i].state;
 									if(obj.state !== temp){
+										obj.battery = 1;
 										obj.lasttime =  new Date().getTime();
 										that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 										});
 									}
+								}else{
+									obj.battery = 0;	
 								}
 
 								ourbikes[i] = obj;

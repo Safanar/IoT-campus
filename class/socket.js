@@ -31,7 +31,7 @@ class SocketIO
 								obj.time = data[i].time;
 								obj.lasttime = new Date(0).getTime();
 								if(bool == true){
-									obj.battery = ourbikes[i].state*10+obj.state;
+									obj.battery = ourbikes[i].state*10 + data[i].data.charAt(9)%2;
 									var temp =  ourbikes[i].state;
 									if(obj.state !== temp){
 										obj.lasttime =  new Date().getTime();

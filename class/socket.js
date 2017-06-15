@@ -29,13 +29,13 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = data[i].time;
-								ourbikes[i] = obj;
-								if(ourbikes[i].lasttime == null)obj.lasttime = null;
-							  if(bool == true && ourbikes[i].state != obj.state){
-									ourbikes[i].lasttime =  d.getTime();
+								if(bool == true && ourbikes[i].state != obj.state){
+									obj.lasttime =  d.getTime();
 									//that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									//});
 								}
+								ourbikes[i] = obj;
+								if(ourbikes[i].lasttime == null)obj.lasttime = null;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));
 							bool = true;

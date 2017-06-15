@@ -36,8 +36,9 @@ class SocketIO
 									//});
 								}
 								ourbikes[i] = obj;
-								bool = true;
+								
 							};
+							bool = true;
 							socket.emit('bikes',func.result(ourbikes,1));
 						}
 					});

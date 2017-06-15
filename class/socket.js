@@ -29,14 +29,14 @@ class SocketIO
 								//obj.kid = null;
 								var d = new Date();
 								obj.time = data[i].time;
-								obj.lasttime = new Date(0).getTime();
-							  if(bool == true && ourbikes[i].state !== obj.state){
+								obj.lasttime = null;
+								var temp =  ourbikes[i].state;
+							  if(bool == true && obj.state != temp){
 									obj.battery = 1;
 									obj.lasttime =  new Date().getTime();
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									});
 								}
-
 								ourbikes[i] = obj;
 							};
 							socket.emit('bikes',func.result(ourbikes,1));

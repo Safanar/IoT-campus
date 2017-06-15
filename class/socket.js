@@ -27,19 +27,18 @@ class SocketIO
 								obj.battery = data[i].data.charAt(8)%2;
 								obj.location = data[i].location;
 								//obj.kid = null;
-								var d = new Date();
 								obj.time = data[i].time;
-								
+
+								if(bool == false)obj.lasttime =  new Date(0).getTime();
 								if(bool == true){
 									obj.battery = ourbikes[i].state*10+obj.state;
-									var temp =  ourbikes[i].state;
-
-									if(obj.state !== temp){
-										obj.lasttime =  new Date().getTime();
-										that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
-										});
+									if(obj.state !== ourbikes[i].state){
+										var d = new Date();
+										obj.lasttime =  d.getTime();
+										//that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
+										//});
 									}
-								}else obj.lasttime = new Date(0).getTime();
+								}
 
 								ourbikes[i] = obj;
 							};

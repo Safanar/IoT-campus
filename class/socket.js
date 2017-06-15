@@ -31,12 +31,10 @@ class SocketIO
 								obj.time = data[i].time;
 								if(bool == true && ourbikes[i].state != obj.state){
 									obj.lasttime =  d.getTime();
-									console.log(obj.lasttime);
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {
 									});
 								}
 								ourbikes[i] = obj;
-								
 							};
 							bool = true;
 							socket.emit('bikes',func.result(ourbikes,1));

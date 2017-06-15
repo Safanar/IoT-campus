@@ -30,7 +30,7 @@ class SocketIO
 								var d = new Date();
 								obj.time = 0
 								obj.lasttime = data[i].lasttime;
-							  if(bool == true && ourbikes[i].state != obj.state){
+							  if(bool == true){
 									obj.battery = 1;
 									obj.lasttime =  10;
 									that.mongoDataBase.updateBike(obj.id,obj.lasttime,function(err,data) {

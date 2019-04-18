@@ -6,10 +6,10 @@
 		* handle UI via js -> seperate font/back-end
 		* it is only a js library : super light weight
 		* react tutorial 1 : https://j6qup3.github.io/2016/08/06/猴子也能看懂的-React-教學-1/
-
+*/
 import React from 'react'
 import { render } from 'react-dom'
-*/
+
 import Map from '../map/map'
 import Socket from '../socket/socket'
 import UI from '../components/UI'

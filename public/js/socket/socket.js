@@ -8,29 +8,16 @@ export default class Socket{
 		});
 		this.socket.on('bikes',(response)=>{
 			var bikes = response.result;
-
-      /*
-			var ourbikes = [];
-			for(var i=0;i<bikes.length;i++){
-				var obj = new Object;
-				obj.id = bikes[i]._id;
-				if(bikes[i].data.charAt(8) == 0)obj.state = 0;
-				else obj.state = 1;
-				obj.battery = bikes[i].data.charAt(4);
-				obj.location = bikes[i].location;
-
-				//obj.kid = null;
-
-				var d = new Date();
-				obj.time = new Date(new Date(bikes[i].time) - (d.getTimezoneOffset() * 60000));
-
-				console.log(bikes[i]);
-				console.log(obj);
-				ourbikes[i] = obj;
-			};
-
-			this.map.setBikes(ourbikes);
-			*/
+			var bikes = response.result;
+			for (var i = 0; i < bikes.length; i++) {
+					var d = new Date;
+					bikes[i].time = new Date(new Date(bikes[i].time) - d.getTimezoneOffset() * 6E4);
+					if (bikes[i].lasttime == (new Date(0)).getTime()) bikes[i].lasttime = "No data";
+					else bikes[i].lasttime = new Date(bikes[i].lasttime);
+					var n = d.getTime();
+					var diff = (n - bikes[i].lasttime) / (1E3 * 60);
+					bikes[i].diff = diff;
+			}
 			this.map.setBikes(bikes);
 		});
 	}
